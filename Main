@@ -1,0 +1,58 @@
+class Pokemon:
+  def __init__(self, name, level, element, max_health, health, is_knocked_out=False):
+    self.name = name
+    self.level = level
+    self.element = element
+    self.max_health = max_health
+    max_health = level * 5
+    self.health = max_health
+    self.is_knocked_out = is_knocked_out
+
+  def lose_health(self, lose):
+    self.lose = lose
+    current_hp = self.health
+    new_hp = current_hp - self.lose
+    print("{0} now has {1} health".format(name, new_hp))
+  
+  def gain_health(self, gain):
+    self.gain = gain
+    current_hp = self.health
+    new_hp = current_hp + self.gain
+    print(f"{self.name} now has {new_hp} health")
+
+  def knock_out(self, health):
+    if self.health == 0:
+      return True
+      print(f"{self.name} has fainted!")
+  def attack(self, element, health, level, other_pokemon):
+    self.other_pokemon = other_pokemon
+    if self.element is "Grass" and self.other_pokemon.element is "Fire":
+      damage = self.level * .5
+      self.other_pokemon.lose_health(damage)
+    if self.element is "Fire" and self.other_pokemon.element is "Water":
+      damage = self.level * .5
+      self.other_pokemon.lose_health(damage)
+    if self.element is "Water" and self.other_pokemon.element is "Grass":
+      damage = self.level * .5
+      self.other_pokemon.lose_health(damage)
+    if self.element is "Grass" and self.other_pokemon.element is "Water":
+      damage = self.level * 2
+      self.other_pokemon.lose_health(damage)
+    if self.element is "Water" and self.other_pokemon.element is "Fire":
+      damage = self.level * 2
+      self.other_pokemon.lose_health(damage)
+    if self.element is "Fire" and self.other_pokemon.element is "Grass":
+      damage = self.level * 2
+      self.other_pokemon.lose_health(damage)
+    
+
+class Trainer:
+  def __init__(self, name, pokemons, potions, current_pokemon):
+    self.name = name
+    self.pokemons = pokemons
+    self.potions = potions
+    self.current_pokemon = current_pokemon
+  
+  
+  def use_potion(self):
+    self.gain_health()
